@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial;
+            padding: 20px;
+            background: #f1f1f1;
+        }
+
+        .header {
+            padding: 2px;
+            font-size: 40px;
+            text-align: center;
+            background: white;
+        }
+
+        .leftcolumn {
+            float: left;
+            width: 100%;
+        }
+
+        .card {
+            background-color: white;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 20px;
+        }
+
+        .card:hover h2 {
+            color: rgb(34, 84, 192);
+        }
+
+        .row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        @media screen and (max-width: 800px) {
+
+            .leftcolumn,
+            .rightcolumn {
+                width: 100%;
+                padding: 0;
+            }
+        }
+
+        .pencil-button {
+            bottom: 30px;
+            right: 30px;
+            padding: 10px 15px;
+            position: fixed;
+            background-color: #007bff;
+            border: none;
+            color: white;
+            border-radius: 50px;
+            font-size: 50px;
+
+        }
+
+        .fa-pencil {
+            margin-right: 2px;
+        }
+
+        .pencil-button:hover {
+            background-color: rgb(34, 84, 192);
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="header">
+        <h2>Roopam's Blog</h2>
+    </div>
+
+    <div class="row">
+        {% for post in posts reversed %}
+        <div class="leftcolumn">
+            <a style="text-decoration: none; color:black;" href="post/{{post.id}}">
+                <div class="card">
+                    <h2>{{post.title}}</h2>
+                    <h5>{{post.created_at}}</h5>
+                    <p>{{post.body|truncatewords:10}}</p>
+                </div>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+    <div>
+        <button class="pencil-button" onclick="window.location.href = 'http://127.0.0.1:8000/new/'">
+            <i class="fa fa-pencil"></i>
+        </button>
+    </div>
+
+</body>
+
+</html>

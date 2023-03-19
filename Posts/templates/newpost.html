@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Responsive Form</title>
+    <style>
+        /* center the form on the web page */
+        form {
+            max-width: 600px;
+            margin: 0 auto;
+            align-items: center;
+            flex-direction: column;
+            display: flex;
+            justify-content: center;
+            height: 80vh;
+
+        }
+
+        /* make the input and text area fields responsive */
+        input[type="text"],
+
+        textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            margin-top: 6px;
+            margin-bottom: 16px;
+            resize: vertical;
+        }
+
+        /* style the submit button */
+        input[type="submit"] {
+            background-color: #2472e0;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        /* style the submit button on hover */
+        input[type="submit"]:hover {
+            background-color: #135ecd;
+        }
+
+        h3 {
+            color: red
+        }
+    </style>
+</head>
+
+<body>
+    <form method="post">
+        {% for message in messages %}
+        <h3>{{message}}</h3>
+        {% endfor %}
+        {% csrf_token %}
+        <input type="text" id="title" name="title" placeholder="Your blog title " maxlength="100" required>
+        <textarea id="body" name="body" placeholder="Write your blog here.........." rows="20" required></textarea>
+        <input type="submit">
+    </form>
+</body>
+
+</html>
